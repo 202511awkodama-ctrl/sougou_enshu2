@@ -33,8 +33,11 @@ public class WorkLogController {
             @RequestParam(name = "date", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             Model model) {
-        model.addAttribute("logs", service.findLogs(date));
+        var logs = service.findLogs(date);
+        model.addAttribute("logs", logs);
         model.addAttribute("selectedDate", date);
+        model.addAttribute("today", LocalDate.now());
+        model.addAttribute("logCount", logs.size());
         model.addAttribute("totalDuration", date == null ? null : service.formatMinutes(service.calculateTotalMinutes(date)));
         return "logs/index";
     }
