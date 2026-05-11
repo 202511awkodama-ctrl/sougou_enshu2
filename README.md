@@ -16,6 +16,17 @@ mvn spring-boot:run
 
 アプリ起動後、ブラウザで `http://localhost:8080/logs` を開きます。
 
+## Render へのデプロイ
+
+`render.yaml` を使って Web Service としてデプロイできます。
+
+1. Render でこのリポジトリを接続します。
+2. New から `Blueprint` を選び、`render.yaml` を読み込みます。
+3. 作成される Web Service の build command は `./mvnw -DskipTests package`、start command は `java -jar target/worklog-lite-0.0.1-SNAPSHOT.jar` です。
+4. デプロイ後は公開URLの `/logs` を開きます。
+
+Render 上では `PORT` 環境変数を使って起動します。アプリ側は `server.port=${PORT:8080}` に対応済みです。
+
 ## テスト方法
 
 ```bash
