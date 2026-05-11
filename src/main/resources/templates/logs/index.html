@@ -60,9 +60,9 @@
             <div class="col-md-4">
                 <div class="summary-card">
                     <div class="summary-label">今日</div>
-                    <div class="summary-value" th:text="${today}">2026-05-11</div>
+                    <div class="summary-value" th:text="${todayDuration}">0時間0分</div>
                     <div class="retro-progress"><span style="width: 72%"></span></div>
-                    <div class="retro-muted small mt-2">GOAL 8時間00分</div>
+                    <div class="retro-muted small mt-2">今日の作業時間 / <span th:text="${today}">2026-05-11</span></div>
                 </div>
             </div>
             <div class="col-md-4">
@@ -131,7 +131,11 @@
                             <span th:text="${log.endTime}">10:00</span>
                         </td>
                         <td th:text="${log.taskTitle}">要件整理</td>
-                        <td><span class="category-badge" th:text="${log.category}">開発</span></td>
+                        <td>
+                            <span class="category-badge"
+                                  th:classappend="${log.category == '開発'} ? ' category-dev' : (${log.category == '品質'} ? ' category-quality' : (${log.category == '計画'} ? ' category-plan' : (${log.category == '改善'} ? ' category-improve' : ' category-default')))"
+                                  th:text="${log.category}">開発</span>
+                        </td>
                         <td th:text="${log.formattedDuration}">1時間0分</td>
                         <td th:text="${log.memo}">メモ</td>
                         <td class="text-end">

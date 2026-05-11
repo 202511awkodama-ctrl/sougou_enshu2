@@ -3,6 +3,7 @@ package com.example.worklog;
 import jakarta.validation.Valid;
 import java.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -37,6 +39,7 @@ public class WorkLogController {
         model.addAttribute("logs", logs);
         model.addAttribute("selectedDate", date);
         model.addAttribute("today", LocalDate.now());
+        model.addAttribute("todayDuration", service.formatMinutes(service.calculateTotalMinutes(LocalDate.now())));
         model.addAttribute("logCount", logs.size());
         model.addAttribute("totalDuration", date == null ? null : service.formatMinutes(service.calculateTotalMinutes(date)));
         return "logs/index";
@@ -102,6 +105,7 @@ public class WorkLogController {
     }
 
     @ExceptionHandler(WorkLogNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleNotFound(Model model) {
         model.addAttribute("errorMessage", "指定された作業ログが見つかりません");
         return "error/404";
