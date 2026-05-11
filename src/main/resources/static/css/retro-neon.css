@@ -321,8 +321,50 @@ a {
 }
 
 .summary-card {
+    position: relative;
+    overflow: hidden;
     padding: 18px;
     min-height: 148px;
+}
+
+.summary-content {
+    position: relative;
+    z-index: 2;
+    padding-right: 8.5rem;
+}
+
+.kpi-art {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.4rem;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    object-fit: contain;
+    opacity: 0.95;
+    filter:
+        drop-shadow(0 0 14px rgba(255, 43, 214, 0.75))
+        drop-shadow(0 0 18px rgba(0, 229, 255, 0.45));
+    transition: transform 160ms ease, opacity 160ms ease;
+}
+
+.kpi-art-character {
+    width: min(38%, 140px);
+}
+
+.kpi-art-chart {
+    right: 0.2rem;
+    bottom: 0.1rem;
+    width: min(46%, 190px);
+    opacity: 0.9;
+}
+
+.kpi-art-trophy {
+    width: min(36%, 130px);
+}
+
+.summary-card:hover .kpi-art {
+    transform: translateY(-3px) scale(1.04);
 }
 
 .summary-label {
@@ -532,6 +574,20 @@ a {
 
     .level-card {
         margin-top: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .summary-content {
+        padding-right: 0;
+    }
+
+    .kpi-art {
+        right: 0.5rem;
+        bottom: 0.5rem;
+        width: 42%;
+        max-width: 150px;
+        opacity: 0.28;
     }
 }
 

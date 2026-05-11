@@ -60,26 +60,35 @@
         <section class="row g-3 mb-4">
             <div class="col-md-4">
                 <div class="summary-card">
-                    <div class="summary-label">今日</div>
-                    <div class="summary-value" th:text="${todayDuration}">0時間0分</div>
-                    <div class="retro-progress"><span style="width: 72%"></span></div>
-                    <div class="retro-muted small mt-2">今日の作業時間 / <span th:text="${today}">2026-05-11</span></div>
+                    <div class="summary-content">
+                        <div class="summary-label">今日</div>
+                        <div class="summary-value" th:text="${todayDuration}">0時間0分</div>
+                        <div class="retro-progress"><span style="width: 72%"></span></div>
+                        <div class="retro-muted small mt-2">今日の作業時間 / <span th:text="${today}">2026-05-11</span></div>
+                    </div>
+                    <img class="kpi-art kpi-art-character" th:src="@{/img/kpi-today-character.png}" alt="" aria-hidden="true">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="summary-card yellow">
-                    <div class="summary-label">合計時間</div>
-                    <div class="summary-value" th:text="${totalDuration != null ? totalDuration : '日付を選択'}">日付を選択</div>
-                    <div class="retro-progress"><span style="width: 54%"></span></div>
-                    <div class="retro-muted small mt-2">日付フィルタ時に表示</div>
+                    <div class="summary-content">
+                        <div class="summary-label">合計時間</div>
+                        <div class="summary-value" th:text="${totalDuration != null ? totalDuration : '日付を選択'}">日付を選択</div>
+                        <div class="retro-progress"><span style="width: 54%"></span></div>
+                        <div class="retro-muted small mt-2">日付フィルタ時に表示</div>
+                    </div>
+                    <img class="kpi-art kpi-art-chart" th:src="@{/img/kpi-total-chart.png}" alt="" aria-hidden="true">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="summary-card cyan">
-                    <div class="summary-label">登録件数</div>
-                    <div class="summary-value"><span th:text="${logCount}">0</span>件</div>
-                    <div class="retro-progress"><span style="width: 82%"></span></div>
-                    <div class="retro-muted small mt-2" th:text="${selectedDate != null ? '選択日の件数' : '全件表示中'}">全件表示中</div>
+                    <div class="summary-content">
+                        <div class="summary-label">登録件数</div>
+                        <div class="summary-value"><span th:text="${logCount}">0</span>件</div>
+                        <div class="retro-progress"><span style="width: 82%"></span></div>
+                        <div class="retro-muted small mt-2" th:text="${selectedDate != null ? '選択日の件数' : '全件表示中'}">全件表示中</div>
+                    </div>
+                    <img class="kpi-art kpi-art-trophy" th:src="@{/img/kpi-count-trophy.png}" alt="" aria-hidden="true">
                 </div>
             </div>
         </section>
