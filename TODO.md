@@ -12,7 +12,7 @@
 - [x] Implement Thymeleaf create/edit form
 - [x] Add sample data
 - [x] Add README
-- [ ] Run tests or build (current environment is blocked by missing Java/JAVA_HOME)
+- [x] Run tests or build
 
 ## Only if MVP is complete
 
