@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${pageTitle} + ' - Worklog Lite'">作業ログフォーム - Worklog Lite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<main class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h1 class="h3 mb-1" th:text="${pageTitle}">作業ログ作成</h1>
+            <p class="text-muted mb-0">必須項目を入力してください</p>
+        </div>
+        <a class="btn btn-outline-secondary" th:href="@{/logs}">一覧へ戻る</a>
+    </div>
+
+    <form class="bg-white border rounded p-4" method="post" th:action="@{${formAction}}" th:object="${workLog}">
+        <div th:if="${#fields.hasAnyErrors()}" class="alert alert-danger">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}">入力エラー</div>
+        </div>
+
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="workDate" class="form-label">作業日</label>
+                <input id="workDate" class="form-control" type="date" th:field="*{workDate}">
+                <div class="text-danger small mt-1" th:errors="*{workDate}"></div>
+            </div>
+            <div class="col-md-4">
+                <label for="startTime" class="form-label">開始時刻</label>
+                <input id="startTime" class="form-control" type="time" th:field="*{startTime}">
+                <div class="text-danger small mt-1" th:errors="*{startTime}"></div>
+            </div>
+            <div class="col-md-4">
+                <label for="endTime" class="form-label">終了時刻</label>
+                <input id="endTime" class="form-control" type="time" th:field="*{endTime}">
+                <div class="text-danger small mt-1" th:errors="*{endTime}"></div>
+            </div>
+            <div class="col-md-8">
+                <label for="taskTitle" class="form-label">作業内容</label>
+                <input id="taskTitle" class="form-control" type="text" th:field="*{taskTitle}" maxlength="120">
+                <div class="text-danger small mt-1" th:errors="*{taskTitle}"></div>
+            </div>
+            <div class="col-md-4">
+                <label for="category" class="form-label">カテゴリ</label>
+                <input id="category" class="form-control" type="text" th:field="*{category}" maxlength="60">
+                <div class="text-danger small mt-1" th:errors="*{category}"></div>
+            </div>
+            <div class="col-12">
+                <label for="memo" class="form-label">メモ</label>
+                <textarea id="memo" class="form-control" rows="4" th:field="*{memo}"></textarea>
+            </div>
+        </div>
+
+        <div class="d-flex gap-2 mt-4">
+            <button class="btn btn-primary" type="submit">保存</button>
+            <a class="btn btn-outline-secondary" th:href="@{/logs}">キャンセル</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

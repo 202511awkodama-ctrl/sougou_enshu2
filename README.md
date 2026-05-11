@@ -1,0 +1,59 @@
+# Worklog Lite
+
+1時間デモ用のミニ勤怠・作業ログアプリです。Java 21、Spring Boot、Maven、Thymeleaf、Spring Data JPA、H2 Database を使います。
+
+## 起動方法
+
+```bash
+./mvnw spring-boot:run
+```
+
+Mavenがインストール済みの場合は、代わりに次のコマンドでも起動できます。
+
+```bash
+mvn spring-boot:run
+```
+
+アプリ起動後、ブラウザで `http://localhost:8080/logs` を開きます。
+
+## テスト方法
+
+```bash
+./mvnw test
+```
+
+Mavenがインストール済みの場合:
+
+```bash
+mvn test
+```
+
+## 主要URL
+
+- `GET /` - `/logs` にリダイレクト
+- `GET /logs` - 作業ログ一覧
+- `GET /logs?date=yyyy-MM-dd` - 日付で絞り込み、日別合計時間を表示
+- `GET /logs/new` - 作業ログ作成
+- `GET /logs/{id}/edit` - 作業ログ編集
+- `POST /logs/{id}/delete` - 作業ログ削除
+- `GET /h2-console` - H2コンソール
+
+## H2接続情報
+
+- JDBC URL: `jdbc:h2:mem:worklogdb`
+- User Name: `sa`
+- Password: 空欄
+
+## 実装範囲
+
+- 作業ログの一覧、作成、編集、削除
+- 必須項目バリデーション
+- `startTime < endTime` のバリデーション
+- 日付絞り込み
+- 日付絞り込み時の日別合計作業時間
+- 起動時のサンプルデータ5件投入
+
+## 制限事項
+
+- 認証、ユーザー管理、外部DB、Docker、REST API専用構成はありません。
+- H2のインメモリDBを使うため、アプリを停止すると登録データは消えます。
