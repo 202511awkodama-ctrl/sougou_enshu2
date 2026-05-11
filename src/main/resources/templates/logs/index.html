@@ -30,7 +30,7 @@
         </nav>
 
         <div class="level-card">
-            <div class="sunset-orb"></div>
+            <img class="level-art" th:src="@{/img/pixel-hero.png}" alt="" aria-hidden="true">
             <div class="d-flex justify-content-between align-items-center mb-2">
                 <strong>LV. 12</strong>
                 <span class="retro-muted small">EXP 2,850 / 4,000</span>
@@ -49,6 +49,7 @@
                     <div class="retro-muted">MINI ATTENDANCE &amp; WORK-LOG</div>
                 </div>
                 <div class="col-lg-4 text-lg-end">
+                    <img class="level-art d-none d-lg-block mb-3" th:src="@{/img/pixel-hero.png}" alt="" aria-hidden="true">
                     <a class="neon-btn pink" th:href="@{/logs/new}">＋ 新規作成 ⚡</a>
                 </div>
             </div>
