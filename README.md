@@ -18,14 +18,16 @@ mvn spring-boot:run
 
 ## Render へのデプロイ
 
-`render.yaml` を使って Web Service としてデプロイできます。
+Render では Docker Web Service としてデプロイします。
 
 1. Render でこのリポジトリを接続します。
-2. New から `Blueprint` を選び、`render.yaml` を読み込みます。
-3. 作成される Web Service の build command は `./mvnw -DskipTests package`、start command は `java -jar target/worklog-lite-0.0.1-SNAPSHOT.jar` です。
-4. デプロイ後は公開URLの `/logs` を開きます。
+2. サービス種別は `Docker` を選びます。
+3. `Dockerfile Path` は `./Dockerfile`、`Docker Context` は `.` にします。
+4. `Health Check Path` は `/logs` にします。
+5. デプロイ後のURLは `https://<service-name>.onrender.com/logs` になります。
 
-Render 上では `PORT` 環境変数を使って起動します。アプリ側は `server.port=${PORT:8080}` に対応済みです。
+Render 上では `PORT` 環境変数で待受ポートが決まり、アプリ側は `application-render.properties` で `server.address=0.0.0.0` と `spring.h2.console.enabled=false` を使います。
+H2 in-memory DB なので、再起動や再デプロイでデータは消えます。
 
 ## テスト方法
 
